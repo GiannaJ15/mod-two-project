@@ -1,0 +1,18 @@
+Add Picture to Profile:
+<br>
+<br>
+<%=form_for @picture do |p| %>
+    <%= p.hidden_field :user_id, value: @user.id%>
+    <%= p.label :Image_URL %>
+    <%= p.text_field :img_url %>
+    <br>
+    <%=p.label :title  %>
+    <%= p.text_field :title %>
+    <br>
+
+        <% @tags.each do |tag| %>
+          <%= tag.name %>
+          <%= check_box_tag "tag_ids[]", tag.id, false, :id => "tag_ids_#{tag.id}" %>
+        <% end %>
+          <%= p.submit %>
+      <%end%>

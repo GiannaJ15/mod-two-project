@@ -1,0 +1,10 @@
+<h1><%=link_to @picture.user.username, @picture.user%></h1>
+<h2><%=@picture.title%></h2>
+<%=image_tag(@picture.img_url) %>
+<%@picture.tags.each do |tag|%>
+#<%=link_to tag.name, tag %>
+<%end %>
+<br>
+<%@picture.comments.each do |comment|%>
+<%=link_to comment.user.username, comment.user %> :  <%= comment.content %>
+<% end %>

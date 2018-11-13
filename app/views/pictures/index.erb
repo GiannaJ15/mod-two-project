@@ -1,0 +1,11 @@
+<ul>
+<% @pictures.each do |picture| %>
+<li>  <%=link_to picture.user.username, picture.user %></li>
+    "<%= picture.title %>"
+    <%= link_to image_tag(picture.img_url), picture  %> <br>
+ <!-- <%=link_to picture.user.username, @user %>: -->
+
+ <br>
+ <br>
+<% end %>
+</ul>
