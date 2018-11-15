@@ -11,24 +11,33 @@ class PicturesController < ApplicationController
   end
 
   def create
+
     @picture = Picture.create(picture_params)
     @user = User.find(picture_params[:user_id])
     redirect_to user_path(@user)
   end
 
   def show
-    @picture = Picture.find(params[:id])
-    # @picture = Picture.find(picture_params[:id])
-    # byebug
-    # @user = User.find(picture_params[:user_id])
 
+    @picture = Picture.find(params[:id])
+    @user = User.find(@picture.user_id)
+    @comment = Comment.new()
   end
+
+  # def destroy
+  #   Picture.find(params[:id]).destroy
+  #   redirect_to user_path(@user)
+  # end
 
   private
 
   def picture_params
     params.require(:picture).permit(:img_url, :title, :user_id)
   end
+
+  # def  comment_params
+  #   params.require(:comment).permit(:content, :user_id, :picture_id)
+  # end
 
 
 end

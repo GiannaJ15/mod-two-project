@@ -9,11 +9,11 @@
   User.create(
     username:"user#{num}",
     email: "user#{num}@example.com",
-    password: "test123"
+    password_digest: "test123"
   )
 end
 
-["Nature", "NYC", "Art", "Humor"].each do |tag_name|
+["Cookies", "Ice-cream", "Crepes", "Desserts"].each do |tag_name|
   Tag.create(name: tag_name)
 end
 
