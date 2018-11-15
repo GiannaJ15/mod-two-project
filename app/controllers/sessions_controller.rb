@@ -5,12 +5,13 @@ class SessionsController < ApplicationController
 
      def create
        @user = User.find_by(username: params[:username])
-       
+
        if @user && @user.authenticate(params[:password])
 
 
-         log_in_user @user
+         log_in_user(@user)
          redirect_to @user
+
        else
          flash[:errors] = ["Username or password didn't match"]
          redirect_to new_session_path
@@ -19,6 +20,7 @@ class SessionsController < ApplicationController
 
      def destroy
        log_out
+       byebug
        redirect_to login_path
      end
     end

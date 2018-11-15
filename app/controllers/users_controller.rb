@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-# before_action :logged_in_user, only: [:show, :index]
+# before_action :logged_in_user, only: [:index, :show]
  # before_action :correct_user,   only: [:show, :index]
-  # 
-  # def index
-  #   # @user_id = logged_in_user_id
-  #   @users = User.all
-  # end
+  #
+  def index
+    # @user_id = logged_in_user_id
+    @users = User.all
+  
+  end
 
   def new
     @user = User.new
@@ -28,8 +29,10 @@ class UsersController < ApplicationController
   else
     flash[:errors] = @user.errors.full_messages
     redirect_to new_user_path
-    end
   end
+  end
+
+
 
 
   #
@@ -54,12 +57,15 @@ private
     params.require(:user).permit(:email, :username, :password)
   end
 
-  # def logged_in_user
-  #     unless logged_in?
-  #       flash[:danger] = "Please log in."
-  #       redirect_to login_url
-  #     end
-  #   end
+
+
+  def logged_in_user
+       unless logged_in?
+         store_location
+         flash[:danger] = "Please log in."
+         redirect_to login_url
+       end
+     end
 
   #   def correct_user
   #   @user = User.find(params[:id])
