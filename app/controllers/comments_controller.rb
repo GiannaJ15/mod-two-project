@@ -17,7 +17,7 @@ end
 def create
   @comment = Comment.create(comment_params)
   @picture = Picture.find(comment_params[:picture_id])
-  @user = User.find(comment_params[:user_id])
+  @user = User.find(logged_in_user_id)
   redirect_to picture_path(@picture)
 end
 

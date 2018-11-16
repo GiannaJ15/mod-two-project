@@ -13,14 +13,13 @@ class SessionsController < ApplicationController
          redirect_to @user
 
        else
-         flash[:errors] = ["Username or password didn't match"]
          redirect_to new_session_path
       end
      end
 
      def destroy
        log_out
-       byebug
+
        redirect_to login_path
      end
     end

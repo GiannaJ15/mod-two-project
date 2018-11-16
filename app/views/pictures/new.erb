@@ -9,10 +9,7 @@ Add Picture to Profile:
     <%=p.label :title  %>
     <%= p.text_field :title %>
     <br>
-
-        <% @tags.each do |tag| %>
-          <%= tag.name %>
-          <%= check_box_tag "tag_ids[]", tag.id, false, :id => "tag_ids_#{tag.id}" %>
-        <% end %>
-          <%= p.submit %>
+      <%= p.submit %>
       <%end%>
+
+      

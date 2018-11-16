@@ -7,26 +7,33 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
     @user = User.find(picture_params[:user_id])
 
-    @tags = Tag.all
   end
 
   def create
+
     @picture = Picture.create(picture_params)
-    @user = User.find(picture_params[:user_id])
-    redirect_to user_path(@user)
+    redirect_to @picture
+
   end
 
   def show
+    @tags = Tag.all
+    @tag = Tag.new
+    @picture_tag = PictureTag.new
     @picture = Picture.find(params[:id])
-    @user = User.find(@picture.user_id)
+    @user = User.find(@picture.user.id)
+    @loggeduser = User.find(logged_in_user_id)
     @comment = Comment.new()
+
+
   end
 
   def destroy
     @picture = Picture.find(params[:id])
-  
+
     if authorized?(@picture.user_id)
         @picture.destroy
+        redirect_to @picture.user
       else
         current_user
       end

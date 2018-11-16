@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     # @user_id = logged_in_user_id
     @users = User.all
-  
+
   end
 
   def new
@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @pictures = @user.pictures
     @tags = Tag.all
+    @logged_in = logged_in?
+  
   end
 
 

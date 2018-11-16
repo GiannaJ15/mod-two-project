@@ -13,9 +13,15 @@
 #<%=link_to tag.name, tag %>
 <%end %>
 
+<%= form_for @picture_tag do |f|%>
+<%= f.hidden_field :picture_id, value: @picture.id%>
+Yum?
+<%= f.collection_select :tag_id, @tags, :id, :name %>
+<%= f.submit "Rate" %>
+<% end %>
+<br>
+<br>
 
-<br>
-<br>
 
 
 <%@picture.comments.each do |comment|%>
@@ -30,9 +36,12 @@
 <%=form_for @comment do |f| %>
 <%=f.label "Comment"  %>
 <%=f.text_field :content%>
-<%=f.hidden_field :user_id, value: @user.id %>
+<%=f.hidden_field :user_id, value: @loggeduser.id %>
 <%=f.hidden_field :picture_id, value: @picture.id %>
 <%=f.submit %>
 <% end %>
 
-<%= link_to 'Delete', picture_path(@picture), method: :delete %> 
+
+<% if @loggeduser == @user %>
+<%= link_to 'Delete Picture', picture_path(@picture), method: :delete %>
+<% end %>
